@@ -52,16 +52,19 @@ La opción -t se utiliza para etiquetar la imagen que se está construyendo con 
 ### Ejecutar el archivo Dockerfile y construir una imagen en la versión 1.0
 ```
 docker build -t mycentos:1.0 .
-docker inspect mycentos:1.0
-
 ```
-![Uploading image.png…]()
 
 
 **¿Cuántos pasos se han ejecutado?**
+15 
+![image](https://github.com/xknuclesx/2024A-ISWD633-Practica4/assets/120606471/0aa1f4a9-728f-4ed9-b445-b5e981abee18)
 
 ### Inspeccionar la imagen creada
-# COMPLETAR CON UNA CAPTURA
+```
+docker inspect mycentos:1.0
+```
+![image](https://github.com/xknuclesx/2024A-ISWD633-Practica4/assets/120606471/f1f2196e-31c0-46c2-9f52-e9b9a077338c)
+
 
 **Modificar el archivo index.html para incluir su nombre**
 **¿Cuántos pasos se han ejecutado? ¿Observa algo diferente en la creación de la imagen**
