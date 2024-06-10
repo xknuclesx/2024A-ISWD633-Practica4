@@ -39,33 +39,47 @@ La opción -t se utiliza para etiquetar la imagen que se está construyendo con 
 1. Instalar el sistema operativo centos 7
 2. Actualizar el sistema operativo
 3. Instalar apache
-4. Copiar los archivos de la web estática
-5. Ejecutar el apache
-   
-### Ejecutar el archivo Dockerfile y construir una imagen
+4. Copiar los archivos desde ./web a /var/www/html
+5. Exponer el puerto 80
+6. Ejecutar apache
+
+![mapeo](imagenes/dockerfile.PNG)
+
+- apachectl: Es el script de control para el servidor web Apache. Se utiliza para iniciar, detener y controlar el servidor web.
+- -D FOREGROUND: Esta opción le dice a Apache que se ejecute en primer plano. Por defecto, Apache se ejecuta como un servicio en segundo plano. Sin embargo, en un contenedor Docker, es preferible que el proceso principal (en este caso, Apache) se ejecute en primer plano para que Docker pueda monitorear el estado del proceso. Si Apache se ejecutara en segundo plano, Docker no podría saber si el servidor web está funcionando correctamente o no.
+
+ 
+### Ejecutar el archivo Dockerfile y construir una imagen en la versión 1.0
 ```
-docker build -t img-emme:1.0 .
+
 ```
 
 **¿Cuántos pasos se han ejecutado?**
 
 ### Inspeccionar la imagen creada
-```
-
-```
-
-**¿Cuánto pesa la imagen?**
+# COMPLETAR CON UNA CAPTURA
 
 **Modificar el archivo index.html para incluir su nombre**
+**¿Cuántos pasos se han ejecutado? ¿Observa algo diferente en la creación de la imagen**
 
-### Ejecutar el archivo Dockerfile y construir una imagen
+## Mecanismo de caché
+Docker usa un mecanismo de caché cuando crea imágenes para acelerar el proceso de construcción y evitar la repetición de pasos que no han cambiado. Cada instrucción en un Dockerfile crea una capa en la imagen final. Docker intenta reutilizar las capas de una construcción anterior si no han cambiado, lo que reduce significativamente el tiempo de construcción.
+
+- Instrucción FROM: Si la imagen base ya está en el sistema, Docker la reutiliza.
+- Instrucciones de configuración (ENV, RUN, COPY, etc.): Docker verifica si alguna instrucción ha cambiado. Si no, reutiliza la capa correspondiente de la caché.
+- Instrucción COPY y ADD: Si los archivos copiados no han cambiado, Docker reutiliza la capa de caché correspondiente.
+![mapeo](imagenes/dockerfile-cache.PNG)
+
+### Crear un contenedor a partir de las imagen creada, mapear todos los puertos
 ```
 
 ```
 
-**¿Qué sucede al ejecutar el Dockerfile nuevamente?**
+### ¿Con que puerto host se está realizando el mapeo?
+# COMPLETAR CON LA RESPUESTA
 
 **¿Qué es una imagen huérfana?**
+# COMPLETAR CON LA RESPUESTA
 
 ### Identificar imágenes huérfanas
 ```
@@ -87,7 +101,3 @@ docker build -t img-emme:1.0 .
 docker build -t <nombre imagen>:<version> -f <ruta y nommbre del Dockerfile> .
 ```
 
-### Crear un contenedor a partir de una de las imágenes creadas
-```
-
-```
