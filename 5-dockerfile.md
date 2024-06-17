@@ -79,28 +79,31 @@ Docker usa un mecanismo de caché cuando crea imágenes para acelerar el proceso
 
 ### Crear un contenedor a partir de las imagen creada, mapear todos los puertos
 ```
-
+docker run -d -p 80:80 --name mycentos_container mycentos:2.0
 ```
 
 ### ¿Con que puerto host se está realizando el mapeo?
-# COMPLETAR CON LA RESPUESTA
+
+puerto 80
 
 **¿Qué es una imagen huérfana?**
 # COMPLETAR CON LA RESPUESTA
 
 ### Identificar imágenes huérfanas
-```
 
 ```
+docker images -f "dangling=true"
+```
+
 
 ### Listar los IDS de las imágenes huérfanas
 ```
-
+docker images -f "dangling=true" -q
 ```
 
 ### Eliminar imágenes huérfanas
 ```
-
+docker rmi $(docker images -f "dangling=true" -q)
 ```
 
 ### Ejecutar un archivo Dockerfile que tiene otro nombre
